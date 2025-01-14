@@ -1,0 +1,61 @@
+{% extends 'base_page.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <h2>Running ORB-SLAM Algorithm on Robot Car</h2>
+    <p>Simultaneous Localization and Mapping (SLAM) is a popular research area in robotics. SLAM is useful for applications where robots have a lidar or camera sensor that can detect and map the surrounding terrain, such as a home vacuuming robot.</p>
+
+    <p>On a moving robot, SLAM usually works by tracking the motion of points and lines in objects in front of the sensor to backward-infer the movement of the robot as well as maintaining a terrain (objects) map. The problem is challenging in terms of computational resources required for real-time processing, correct handling of edge cases where the algorithm may fail, and the possibility to integrate additional sensor information such as inertia sensors.</p>
+
+    <p>I used an open-source implementation of SLAM, ORB-SLAM 3, in this project to experiment with this technology in a lab setting, using a two-wheeled robot equipped with a camera and a wheel encoder. The goal was to compare the performance of the SLAM algorithm on a camera against the dead-reckoning algorithm of the wheel encoder.</p>
+
+    <h3>System Architecture</h3>
+    <p>The project utilizes the Robot Operating System (ROS) to coordinate the sensor input, monitoring apps, and actuator outputs on the robot. ROS is a software system I learned in my robotics class, which is applied to this project as part of a computer vision class assignment.</p>
+
+    <p>For ORB-SLAM 3, which is a C++ library, to work with my Python code in ROS, I ran them as two processes and used a pipe to communicate between the two:</p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/subprocess.png" alt="Inter-process Communication Design" style="width: 100%; height: auto;">
+        <figcaption>Figure 1. C++-based ORB-SLAM runs on a separate process; it receives camera data from the ROS script and sends back a stream of estimated location and orientation of the camera in space and surrounding object locations, from which a movement path can be reconstructed and used to infer the position information for the lab robot. </figcaption>
+    </figure>
+
+    <h3>Test Track</h3>
+    <p>The test track was set up as follows where the robot goes in a circular trajectory for one loop. I decided to record both the output of SLAM (red) and the dead-reckoning algorithm (green) and reconstruct two estimated trajectories independently:</p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/test_track.jpg" alt="Test Track Top View" style="width: 100%; height: auto;">
+        <figcaption>Figure 2-1. Top view of the test track in our lab. </figcaption>
+        <img src="/static/images/test_track_annotated.png" alt="Test Track Top View" style="width: 100%; height: auto; margin-top: 60px;">
+        <figcaption>Figure 2-2. Path followed by the robot. </figcaption>
+    </figure>
+
+    <p>After booting up the robot, the program is run on the robot to start the ORB-SLAM process, and I control the robot remotely to follow the above drawn path and record down the ORB-SLAM output. This process is repeated for several time for best results.</p>
+
+    <h3>Reconstructed Trajectories</h3>
+    <p>Reconstruction of the robot trajectory is shown below. Notably ORB-SLAM is able to output estimated trajectory simultaneously as the robot drives, but here for analysis purpose we record the entire location sequence and only draw the diagram after tests are over.</p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/success1-3.png" alt="Reconstructed Trajectory" style="width: 140%; height: auto; clip-path: inset(100px); margin: -100px -100px -100px -100px;">
+        <figcaption>Figure 3. Comparison between trajectories reconstructed from ORB-SLAM (red) and wheel encoder dead-reckoning (green) </figcaption>
+    </figure>
+    <p>Above reconstruction diagram shows similar level of quality for both trajectories. The ORB-SLAM trajectory displays an abrupt jump (straight line on top left) around the end of the track, showing the algorithm is able to recognize the initial location by feature matching. This enables it to correct the location drift caused by sensor errors and inaccuracies.</p>
+    <p>This strength of the SLAM algorithm comes when it recognizes seen locations after the robot completes a full circle, closing the loop as demonstrated. This loop-closing behavior distinguishes SLAM from the dead-reckoning algorithm, which slowly drifts over time and eventually becomes unrecoverable.</p>
+
+    <h3>Challenges and Observations</h3>
+    <p>SLAM algorithm relies on the camera, and while the robot is completing the track, we see that occasionally the algorithm fails due to motion blurs:</p>
+    <figure style="width: 70%; height: auto;">
+        <div style="display: flex; gap: 10px;">
+            <img src="/static/images/before_lose_track_during_rotation.png" alt="Before: Tracking Lost due to Motion Blur" style="width: 60%; height: 60%;">
+            <img src="/static/images/after_lose_track_during_rotation.png" alt="After: Tracking Lost due to Motion Blur" style="width: 60%; height: 60%;">
+        </div>
+        <figcaption>Figure 4. Robot camera experiencing rotational motion in a turn, causing the ORB-SLAM algorithm to temporarily fail due to untrackable features. </figcaption>
+    </figure>
+
+    <p>On sharp turn, or on facing a blank wall, no visual features can be reliably seen by the camera. Localization algorithm will therefore fail. Two remedies are possible: First is to switch to another sensor like wheel encoder in the short run; second is to wait until robot goes back to a previous location from which ORB-SLAM recognizes its location and is able to return on track and continue providing location estimates.</p>
+
+    <h3>Computational Resources</h3>
+    <p>Initially I tested and found CPU requirements for the SLAM algorithm too high for the lab robot's Raspberry Pi processor. To address this, laptop remote control is used so the algorithm can run on my laptop's CPU while remotely sending commands to the robot. This setup was supported by ROS and done easily by adding a command line option.</p>
+
+    <h3>Conclusion</h3>
+    <p>In conclusion, this project allows me to run ORB-SLAM 3 on the lab robot car and performed a qualitative comparison between camera-only real-time SLAM and dead-reckoning. Through exploring various pitfalls of SLAM, I found explanations for why it is effective in a closed-room, repeated-motion setting: it can always recover from failures and avoid location drifting completely due to its ability to recognize previously seen places.</p>
+</main>
+{% endblock %}

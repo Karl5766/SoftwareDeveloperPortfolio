@@ -1,0 +1,45 @@
+{% extends 'base_page.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <h2>Gazprea Compiler Project</h2>
+    <p>In my compiler design course project, our team of 3 collaborated to develop an ANTLR parser and an LLVM compiler for a version of a programming language from IBM. The language was designed for meeting the recent upward trend of demand for parallelized linear algebra applications at the time.</p>
+
+    <h3>Project Overview</h3>
+    <p>We started working early and decided to adapt an ownership model. My role included the development of the backend and writing tests for the compiler. The documentation of the language was 90+ pages long, which was initially daunting. However, within a bit more than a week, we digested the documentation into parts that allowed us to write a parser prototype of the language.</p>
+
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/gazprea_compilation_process.png" alt="Gazprea Compilation Process" style="width: 100%; height: auto;">
+        <figcaption>Figure 1. A Gazprea program is fed to the Gazprea frontend, implemented with an ANTLR parser. It is translated into LLVM IR for optimization and further processing and finally translated into an executable program. </figcaption>
+    </figure>
+
+    <p>The design roughly breaks down to a compiler frontend implemented by ANTLR parser, and a compiler backend implemented by C. We were then able to divide the work, with each part satisfying the requirements stated in the language specification. Gazprea has very flexible type checking and auto type inference features, making this part challenging to implement for both frontend and backend. </p>
+    <p>My job in this project includes: Involved in the team discussions and writing of ANTLR grammar file; design and implement the C backend; contribute to and maintain the unit tests.</p>
+
+    <h3>Dynamic C Runtime</h3>
+    <p>Noticing the time constraint of the project, I adapted a dynamically executed C runtime for the backend and wrote a script that automated compiler testing and memory error checking using Valgrind. The dynamic runtime is easier to develop and debug than a static compiler. With this, I produced a somewhat working C backend within a bit more than a week, making the project scope trackable under allotted time.</p>
+
+    <p>Backend functionality. The backend for our Gazprea compiler is responsible for communicating with the ANTLR parser based frontend to execute the creation, update and deletion of language variables and corresponding allocation of memory. It is also responsible for interfacing with the operating systems for print statement etc.</p>
+
+    <h3>Unit Testing</h3>
+    <p>Another of my responsibilities was unit testing, which involved creating tests for the Gazprea language. These tests helped debug our implementations and challenged other students' compiler implementations in the class.</p>
+
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/GazpreaTestFile.png" alt="Diagram: Merge Test Cases" style="width: 100%; height: auto;">
+        <figcaption>Figure 2. Test cases input, expected output and error are organized into one file.</figcaption>
+    </figure>
+
+    <p>Each unit test originally was split into three files. Managing and editing tests was therefore inconvenient as every change to a test case affects all three files, so I merged them into one test file and programmatically split them using a Python script. This allowed us to total 70+ compiler tests as time goes. </p>
+    <p>During the final bug discovery and defense competition among student groups, we obtained first place with the lowest error rates and the highest overall number of features implemented.</p>
+
+    <h3>Achievements</h3>
+    <ul>
+        <li>Developed a dynamic C runtime backend</li>
+        <li>Automated testing and memory error checking</li>
+        <li>Created 70+ unit tests for thorough debugging</li>
+        <li>Our team secured first place in the project competition</li>
+    </ul>
+</main>
+{% endblock %}

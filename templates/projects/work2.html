@@ -1,0 +1,50 @@
+{% extends 'base_page.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <h2>β-amyloid Detection in Lightsheet Scan</h2>
+    <h3>Introduction</h3>
+    <p>
+        Lightsheet microscopy is an imaging technique used in lab settings to illuminate samples and obtain high-resolution scanning.
+        In neurological research, scans of mouse brains result in large volumes that need to be post-processed to obtain useful insights.
+    </p>
+    <p>
+        The study of β-amyloid deposit distribution helps map the progression of Alzheimer's disease.
+        During an 8-month co-op term, I worked on improving a part of the post-processing pipeline for lightsheet scan data,
+        with each volume exceeding 100 GB. Below are sample views of the scans:
+    </p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/Robarts_channel.png" alt="Sample view of β-amyloid scans" style="width: 120%; height: auto;">
+    </figure>
+    <h3>β-amyloid Detection</h3>
+    <p>
+        Old detection methods used hand-crafted algorithms, which struggled to differentiate true β-amyloid deposits from edges of mouse brains.
+        To improve this, I developed a distributed computing pipeline using Dask for scalable image processing, reducing analysis runtime for >100 GB datasets.
+    </p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/Robarts_size.png" alt="Data processing requirement diagram" style="width: 90%; height: auto;">
+        <figcaption>Figure 2. Requirement to process large data diagram (placeholder).</figcaption>
+        <img src="/static/images/Robarts_parallel.png" alt="Parallel Processing Using Dask" style="width: 90%; height: auto; margin-top: 60px;">
+        <figcaption>Figure 3. Dask Arrays divides the work over an n-dimensional Dask array (similar to NumPy ndarray) by chunks, so each chunk can be processed by threads in parallel.</figcaption>
+    </figure>
+    <p>
+        Image processing aspect is done with libraries such as NumPy, SciPy, and nn-UNet. Visualization of intermediate images and results id done with Napari. Finally, nn-UNet was used to remove edges and artifacts after extensive 2D and 3D annotations.
+    </p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/Robarts_techstack.png" alt="Technology stack diagram" style="width:90%; height: auto;">
+        <figcaption>Figure 4. Project Technology Stack</figcaption>
+    </figure>
+    <p>
+        Above shows the technology stack used in this project to build a library that supports distributed Dask computation for lightsheet data. After laborious annotation, we achieved two high-quality annotated datasets for training and testing, with the model reaching a DICE score of 0.8+ and correctly removing most edges upon inspection.
+    </p>
+    <h3>Library Packaging</h3>
+    <p>
+        During the project, I encountered and resolved several bugs in open-source tools. The final software was packaged as the Python library
+        <a href="https://github.com/khanlab/cvpl_tools" target="_blank">cvpl_tools</a>,
+        which provides training, prediction, and distributed post-processing APIs for lightsheet scans.
+        Dependency management and PyPI publishing were handled with Poetry.
+    </p>
+</main>
+{% endblock %}

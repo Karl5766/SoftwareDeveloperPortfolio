@@ -1,0 +1,51 @@
+{% extends 'base_page.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+    <h2>QR Code Scavenge in Android</h2>
+    <p>Commonly, software developers work in teams with Agile methodologies, which is a set of methods that promote regular progress meetings, frequent pull requests, and adaptability to changes.</p>
+
+    <p>We developed an Android app named <strong>QRCode-Quest</strong> in an Agile team of 6 as part of my undergraduate course. The app is built using Android Studio as the IDE and depends on the following components:</p>
+    <ul>
+        <li>Android Navigation</li>
+        <li>OpenStreetMap</li>
+        <li>Firebase Firestore and Storage</li>
+        <li>ZXing for QR code scanning</li>
+        <li>JUnit</li>
+        <li>Espresso</li>
+        <li>Mockito</li>
+    </ul>
+
+    <p>My responsibilities in this team included developing and adapting the Firebase database to integrate with the rest of the app and organizing daily meetings before demo delivery. As with the rest of the team, I collaborated on planning the project, including drawing CRC cards and UML diagrams, and demonstrating the delivered app to the class.</p>
+
+    <h3>App Screenshots</h3>
+
+    <p>Below are a few screenshots of our app:</p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/QR_login.png" alt="Login page screenshot" style="width: 40%; height: auto;">
+        <figcaption>Figure 1. Login Page</figcaption>
+    </figure>
+    <p>The login page is one where the users create their accounts and login using the QR code scanning functionality. This page re-uses the QR scanning functionality to remove the need for repeatedly entering the passwords during login and hashes the passwords for security. A remember-username feature is also added for convenience.</p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/QR_capture.png" alt="Capture UI screenshot" style="width: 40%; height: auto;">
+        <figcaption>Figure 2. Capture Page</figcaption>
+    </figure>
+    <p>QR code capture page allows the user to scan QR pages to gain points and share the scanned codes for other people. In this project we are working with a virtual camera in a simulated environment so we are able to create unit tests for these cases without the need to physically connect to a phone or camera every time the unit tests are run. This improves the efficiency of CI/CD and allows quick and reliable testing of the QR code feature</p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/QR_rank.png" alt="Ranking page screenshot" style="width: 40%; height: auto;">
+        <figcaption>Figure 3. Ranking Page</figcaption>
+    </figure>
+    <p>The ranking page sorts scores by some order and display the ranking that other users obtained. Users that go around to collect QR code can compare the total scores they get against others'. </p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/QR_map.png" alt="App's map feature Screenshot" style="width: 40%;">
+        <figcaption>Figure 4. Mapping Page</figcaption>
+    </figure>
+    <p>In-app map allows users to find QR codes captured by other people and go take a photo themselves. This functionality is implemented with OpenStreetMap, a popular open-source alternative to Google Map</p>
+
+    <p>As the project progressed, we gained significant hands-on experience with Android Studio and its UI and testing frameworks. By the end of the project, I learned a lot on software development processes, teamworks and Agile practices, and contributed over 6000 lines of changes to the repository, and our team worked together to ensure on-time delivery and a successful demo of the app. </p>
+
+    <p><a href="https://github.com/CMPUT301W22T35/QRcode-Quest" target="_blank">GitHub Repository</a></p>
+</main>
+{% endblock %}

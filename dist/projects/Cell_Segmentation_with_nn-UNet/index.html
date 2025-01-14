@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tianming Han's Developer Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header, footer {
+            background-color: #458545;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.6;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <h1>Tianming Han's Developer Portfolio</h1>
+    <nav>
+        <a href="/">Home</a>
+        <div class="dropdown">
+            <a href="/projects/">Projects</a>
+            <div class="dropdown-content">
+                <a href="/projects/Cell_Segmentation_with_nn-UNet/">Cell Segmentation with nn-UNet</a>
+                <a href="/projects/β-amyloid_Detection_in_Lightsheet_Scan/">β-amyloid Detection in Lightsheet Scan</a>
+                <a href="/projects/QR_Code_Scavenge_in_Android/">QR Code Scavenge in Android</a>
+                <a href="/projects/Gazprea_Compiler/">Gazprea Compiler</a>
+                <a href="/projects/Running_ORB-SLAM_Algorithm_on_Robot_Car/">Running ORB-SLAM Algorithm on Robot Car</a>
+            </div>
+        </div>
+        <a href="/contact/">Contact</a>
+    </nav>
+    </header>
+    <main>
+        
+<main>
+    <h2>Cell Segmentation with nn-UNet</h2>
+    <p>This is a volunteer lab experience preceding my β-amyloid detection project.</p>
+
+    <p>Cell segmentation is (typically) a machine learning task that tries to find the number and locations of the cells in microscope images. In this project, we segment 2D and 3D images of stained slices of mouse brain samples to obtain cell counts.</p>
+
+    <p>The dataset at our hand is manually annotated by the lab's co-workers which produces hundreds of images for UNet training to automate segmentation. A strong UNet segmentation algorithm, nn-UNet, is selected as the algorithm of choice. However, training a network in this way requires a GPU with sufficient memory to run for days to converge and is suitable to run on a compute server.</p>
+
+    <figure style="width: 62%; height: auto;">
+        <img src="/static/images/Cellseg_labels.png" alt="Multi-class label of a volume stack" style="width: 84%; height: auto;">
+        <figcaption>Figure 1. Visualization of the Dataset's annotation image.</figcaption>
+    </figure>
+
+    <p>I started this project working on setting up a virtual machine in the school's GPU cluster to run the nn-UNet application. Because image processing is particularly error-prone and requires careful checking at both intermediate and result stages, I developed a customized GUI to display the images and output statistics where needed.</p>
+
+    <p>Numpy and OpenCV-Python came particularly handy in handling the images. I used these libraries for display and format conversion where appropriate. The nn-UNet algorithm had an option to do a 5-fold ensemble, which improves the accuracy slightly by combining five training models, each taking a few days to run. I completed one run for both 2D and 3D datasets without the ensemble first. The result of the runs was inspected with the custom GUI, with sliding across 3D images' z-axis controlled by a slider. After that, the 5-fold ensemble was performed to further increase the accuracy.</p>
+
+    <figure style="width: 62%; height: auto;">
+        <img src="/static/images/2d_allfolds_prc.png" alt="Precision Recall Curve of nnU-Net Prediction Results" style="width: 85%; height: auto;">
+        <figcaption>Figure 2. Precision-Recall curve for the 2d-neuron detection dataset; calculating the area under the curve is a very data-efficient way of estimating the algorithm performance on this dataset.</figcaption>
+    </figure>
+
+    <p>In the end, I was able to significantly improve the accuracy of the algorithm and generate predictions of neuron locations across hundreds of scan images.</p>
+</main>
+
+    </main>
+    <footer>
+    <p>&copy; 2025 Tianming Han. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tianming Han's Developer Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header, footer {
+            background-color: #458545;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.6;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <h1>Tianming Han's Developer Portfolio</h1>
+    <nav>
+        <a href="/">Home</a>
+        <div class="dropdown">
+            <a href="/projects/">Projects</a>
+            <div class="dropdown-content">
+                <a href="/projects/Cell_Segmentation_with_nn-UNet/">Cell Segmentation with nn-UNet</a>
+                <a href="/projects/β-amyloid_Detection_in_Lightsheet_Scan/">β-amyloid Detection in Lightsheet Scan</a>
+                <a href="/projects/QR_Code_Scavenge_in_Android/">QR Code Scavenge in Android</a>
+                <a href="/projects/Gazprea_Compiler/">Gazprea Compiler</a>
+                <a href="/projects/Running_ORB-SLAM_Algorithm_on_Robot_Car/">Running ORB-SLAM Algorithm on Robot Car</a>
+            </div>
+        </div>
+        <a href="/contact/">Contact</a>
+    </nav>
+    </header>
+    <main>
+        
+<main>
+    <h2>β-amyloid Detection in Lightsheet Scan</h2>
+    <h3>Introduction</h3>
+    <p>
+        Lightsheet microscopy is an imaging technique used in lab settings to illuminate samples and obtain high-resolution scanning.
+        In neurological research, scans of mouse brains result in large volumes that need to be post-processed to obtain useful insights.
+    </p>
+    <p>
+        The study of β-amyloid deposit distribution helps map the progression of Alzheimer's disease.
+        During an 8-month co-op term, I worked on improving a part of the post-processing pipeline for lightsheet scan data,
+        with each volume exceeding 100 GB. Below are sample views of the scans:
+    </p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/Robarts_channel.png" alt="Sample view of β-amyloid scans" style="width: 120%; height: auto;">
+    </figure>
+    <h3>β-amyloid Detection</h3>
+    <p>
+        Old detection methods used hand-crafted algorithms, which struggled to differentiate true β-amyloid deposits from edges of mouse brains.
+        To improve this, I developed a distributed computing pipeline using Dask for scalable image processing, reducing analysis runtime for >100 GB datasets.
+    </p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/Robarts_size.png" alt="Data processing requirement diagram" style="width: 90%; height: auto;">
+        <figcaption>Figure 2. Requirement to process large data diagram (placeholder).</figcaption>
+        <img src="/static/images/Robarts_parallel.png" alt="Parallel Processing Using Dask" style="width: 90%; height: auto; margin-top: 60px;">
+        <figcaption>Figure 3. Dask Arrays divides the work over an n-dimensional Dask array (similar to NumPy ndarray) by chunks, so each chunk can be processed by threads in parallel.</figcaption>
+    </figure>
+    <p>
+        Image processing aspect is done with libraries such as NumPy, SciPy, and nn-UNet. Visualization of intermediate images and results id done with Napari. Finally, nn-UNet was used to remove edges and artifacts after extensive 2D and 3D annotations.
+    </p>
+    <figure style="width: 70%; height: auto;">
+        <img src="/static/images/Robarts_techstack.png" alt="Technology stack diagram" style="width:90%; height: auto;">
+        <figcaption>Figure 4. Project Technology Stack</figcaption>
+    </figure>
+    <p>
+        Above shows the technology stack used in this project to build a library that supports distributed Dask computation for lightsheet data. After laborious annotation, we achieved two high-quality annotated datasets for training and testing, with the model reaching a DICE score of 0.8+ and correctly removing most edges upon inspection.
+    </p>
+    <h3>Library Packaging</h3>
+    <p>
+        During the project, I encountered and resolved several bugs in open-source tools. The final software was packaged as the Python library
+        <a href="https://github.com/khanlab/cvpl_tools" target="_blank">cvpl_tools</a>,
+        which provides training, prediction, and distributed post-processing APIs for lightsheet scans.
+        Dependency management and PyPI publishing were handled with Poetry.
+    </p>
+</main>
+
+    </main>
+    <footer>
+    <p>&copy; 2025 Tianming Han. All rights reserved.</p>
+    </footer>
+</body>
+</html>

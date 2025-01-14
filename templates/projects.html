@@ -1,0 +1,67 @@
+{% extends 'base_page.html' %}
+
+{% block page_title %}Projects - Tianming Han's Developer Portfolio{% endblock %}
+
+{% block content %}
+    <main>
+        <h2>Work Experience Highlights</h2>
+
+        <div class="project">
+            <h3><a href="/projects/Cell_Segmentation_with_nn-UNet/">Microstructure Modeling with Deep Learning</a></h3>
+            <p>05/2023 - 04/2024</p>
+            <p>Employer Location: University of Illinois at Urbana Champaign, IL, US (Remote, Python, Slurm, nn-UNet, Cellpose, Research Volunteering)</p>
+            <ul>
+                <li>Enabled multi-class segmentation and quantitative analysis of diverse cell types, later applied across 120,000 brightfield mouse brain samples, supporting comprehensive brain cellular mapping</li>
+                <li>Adapted training over UIUC Biocluster and Google Colab GPUs</li>
+                <li>Implemented data cleaning, enhancement, post-processing, and ensemble training strategies to significantly improve the segmentation precision and recall over 90%</li>
+                <li>Created visualization UI and statistical reports</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3><a href="/projects/β-amyloid_Detection_in_Lightsheet_Scan/">β-amyloid Detection in Light Sheet Scan</a></h3>
+            <p>06/2024 - Present</p>
+            <p>Western University, ON, CA (In-Person, Python, Dask, Coiled, AI, Napari, Syglass, GCP, Co-op)</p>
+            <ul>
+                <li>Facilitated the precise localization and quantification of β-amyloid deposits in whole mouse brains, advancing neurodegenerative disease research</li>
+                <li>Improved accuracy of preprocessing step of quantification pipeline with nn-UNet and CellSeg3D</li>
+                <li>Contributed to Dask open source software stacks</li>
+                <li>Fixed bug to reduce the processing of hundreds of GB's of lightsheet scans</li>
+                <li>Developed multiscale images visualization tools using Napari</li>
+                <li>Annotated scans with VR-based and open-source annotation apps</li>
+            </ul>
+        </div>
+
+        <h2>Other Programming Projects</h2>
+
+        <div class="project">
+            <h3><a href="/projects/QR_Code_Scavenge_in_Android/">QRCode-Quest</a></h3>
+            <p>01/2022 - 04/2022 (Java, Android Studio, Course Project)</p>
+            <ul>
+                <li>Developed testable and maintainable app, from planning to presentation</li>
+                <li>Implemented unit testing using JUnit, Espresso and Mockito</li>
+                <li>Built database for user profile and photos storage and retrieval</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3><a href="/projects/Gazprea_Compiler/">Implementing Gazprea Compiler</a></h3>
+            <p>10/2022 - 12/2022 (C/C++, LLVM, ANTLR, Course Project)</p>
+            <ul>
+                <li>Practiced software ownership, team communication, problem solving</li>
+                <li>Developed a C++ LLVM backend with C bindings for a compiler that supports linear algebra data types with automatic type inference</li>
+                <li>Delivered advanced features in timely fashion while minimizing bugs and memory leaks using automated tests</li>
+            </ul>
+        </div>
+
+        <div class="project">
+            <h3><a href="/projects/Running_ORB-SLAM_Algorithm_on_Robot_Car/">Real-Time ORB-SLAM on Lab Robot</a></h3>
+            <p>04/2023 (C/C++, Python, Linux, Docker, Independent Course Project)</p>
+            <ul>
+                <li>Solved compilation and IPC issues, deploying ORB-SLAM3 on lab robot</li>
+                <li>Evaluated the algorithm against another localization method</li>
+                <li>Achieved real-time processing rate by moving computation on remote laptop</li>
+            </ul>
+        </div>
+    </main>
+{% endblock %}
