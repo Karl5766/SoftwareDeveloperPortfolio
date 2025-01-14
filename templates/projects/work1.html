@@ -12,7 +12,7 @@
     <p>The dataset at our hand is manually annotated by the lab's co-workers which produces hundreds of images for UNet training to automate segmentation. A strong UNet segmentation algorithm, nn-UNet, is selected as the algorithm of choice. However, training a network in this way requires a GPU with sufficient memory to run for days to converge and is suitable to run on a compute server.</p>
 
     <figure style="width: 62%; height: auto;">
-        <img src="{% static 'images/Cellseg_labels.png' %}" alt="Multi-class label of a volume stack" style="width: 84%; height: auto;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/Cellseg_labels.png" alt="Multi-class label of a volume stack" style="width: 84%; height: auto;">
         <figcaption>Figure 1. Visualization of the Dataset's annotation image.</figcaption>
     </figure>
 
@@ -21,7 +21,7 @@
     <p>Numpy and OpenCV-Python came particularly handy in handling the images. I used these libraries for display and format conversion where appropriate. The nn-UNet algorithm had an option to do a 5-fold ensemble, which improves the accuracy slightly by combining five training models, each taking a few days to run. I completed one run for both 2D and 3D datasets without the ensemble first. The result of the runs was inspected with the custom GUI, with sliding across 3D images' z-axis controlled by a slider. After that, the 5-fold ensemble was performed to further increase the accuracy.</p>
 
     <figure style="width: 62%; height: auto;">
-        <img src="/static/images/2d_allfolds_prc.png" alt="Precision Recall Curve of nnU-Net Prediction Results" style="width: 85%; height: auto;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/2d_allfolds_prc.png" alt="Precision Recall Curve of nnU-Net Prediction Results" style="width: 85%; height: auto;">
         <figcaption>Figure 2. Precision-Recall curve for the 2d-neuron detection dataset; calculating the area under the curve is a very data-efficient way of estimating the algorithm performance on this dataset.</figcaption>
     </figure>
 

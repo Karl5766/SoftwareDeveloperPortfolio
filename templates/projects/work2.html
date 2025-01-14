@@ -16,7 +16,7 @@
         with each volume exceeding 100 GB. Below are sample views of the scans:
     </p>
     <figure style="width: 70%; height: auto;">
-        <img src="/static/images/Robarts_channel.png" alt="Sample view of β-amyloid scans" style="width: 120%; height: auto;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/Robarts_channel.png" alt="Sample view of β-amyloid scans" style="width: 120%; height: auto;">
     </figure>
     <h3>β-amyloid Detection</h3>
     <p>
@@ -24,16 +24,16 @@
         To improve this, I developed a distributed computing pipeline using Dask for scalable image processing, reducing analysis runtime for >100 GB datasets.
     </p>
     <figure style="width: 70%; height: auto;">
-        <img src="/static/images/Robarts_size.png" alt="Data processing requirement diagram" style="width: 90%; height: auto;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/Robarts_size.png" alt="Data processing requirement diagram" style="width: 90%; height: auto;">
         <figcaption>Figure 2. Requirement to process large data diagram (placeholder).</figcaption>
-        <img src="/static/images/Robarts_parallel.png" alt="Parallel Processing Using Dask" style="width: 90%; height: auto; margin-top: 60px;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/Robarts_parallel.png" alt="Parallel Processing Using Dask" style="width: 90%; height: auto; margin-top: 60px;">
         <figcaption>Figure 3. Dask Arrays divides the work over an n-dimensional Dask array (similar to NumPy ndarray) by chunks, so each chunk can be processed by threads in parallel.</figcaption>
     </figure>
     <p>
         Image processing aspect is done with libraries such as NumPy, SciPy, and nn-UNet. Visualization of intermediate images and results id done with Napari. Finally, nn-UNet was used to remove edges and artifacts after extensive 2D and 3D annotations.
     </p>
     <figure style="width: 70%; height: auto;">
-        <img src="/static/images/Robarts_techstack.png" alt="Technology stack diagram" style="width:90%; height: auto;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/Robarts_techstack.png" alt="Technology stack diagram" style="width:90%; height: auto;">
         <figcaption>Figure 4. Project Technology Stack</figcaption>
     </figure>
     <p>

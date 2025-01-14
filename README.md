@@ -5,5 +5,5 @@ Django does not directly work on GitHub page, and requires convertion to static 
 ```commandline
 pip install django-distill
 python manage.py collectstatic
-python manage.py distill-local dist
+python manage.py distill-local docs
 ```

@@ -58,18 +58,18 @@
     <header>
     <h1>Tianming Han's Developer Portfolio</h1>
     <nav>
-        <a href="/">Home</a>
+        <a href="/SoftwareDeveloperPortfolio/">Home</a>
         <div class="dropdown">
-            <a href="/projects/">Projects</a>
+            <a href="/SoftwareDeveloperPortfolio/projects/">Projects</a>
             <div class="dropdown-content">
-                <a href="/projects/Cell_Segmentation_with_nn-UNet/">Cell Segmentation with nn-UNet</a>
-                <a href="/projects/β-amyloid_Detection_in_Lightsheet_Scan/">β-amyloid Detection in Lightsheet Scan</a>
-                <a href="/projects/QR_Code_Scavenge_in_Android/">QR Code Scavenge in Android</a>
-                <a href="/projects/Gazprea_Compiler/">Gazprea Compiler</a>
-                <a href="/projects/Running_ORB-SLAM_Algorithm_on_Robot_Car/">Running ORB-SLAM Algorithm on Robot Car</a>
+                <a href="/SoftwareDeveloperPortfolio/projects/Cell_Segmentation_with_nn-UNet/">Cell Segmentation with nn-UNet</a>
+                <a href="/SoftwareDeveloperPortfolio/projects/beta_amyloid_Detection_in_Lightsheet_Scan/">β-amyloid Detection in Lightsheet Scan</a>
+                <a href="/SoftwareDeveloperPortfolio/projects/QR_Code_Scavenge_in_Android/">QR Code Scavenge in Android</a>
+                <a href="/SoftwareDeveloperPortfolio/projects/Gazprea_Compiler/">Gazprea Compiler</a>
+                <a href="/SoftwareDeveloperPortfolio/projects/Running_ORB-SLAM_Algorithm_on_Robot_Car/">Running ORB-SLAM Algorithm on Robot Car</a>
             </div>
         </div>
-        <a href="/contact/">Contact</a>
+        <a href="/SoftwareDeveloperPortfolio/contact/">Contact</a>
     </nav>
     </header>
     <main>
@@ -87,16 +87,16 @@
 
     <p>For ORB-SLAM 3, which is a C++ library, to work with my Python code in ROS, I ran them as two processes and used a pipe to communicate between the two:</p>
     <figure style="width: 70%; height: auto;">
-        <img src="/static/images/subprocess.png" alt="Inter-process Communication Design" style="width: 100%; height: auto;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/subprocess.png" alt="Inter-process Communication Design" style="width: 100%; height: auto;">
         <figcaption>Figure 1. C++-based ORB-SLAM runs on a separate process; it receives camera data from the ROS script and sends back a stream of estimated location and orientation of the camera in space and surrounding object locations, from which a movement path can be reconstructed and used to infer the position information for the lab robot. </figcaption>
     </figure>
 
     <h3>Test Track</h3>
     <p>The test track was set up as follows where the robot goes in a circular trajectory for one loop. I decided to record both the output of SLAM (red) and the dead-reckoning algorithm (green) and reconstruct two estimated trajectories independently:</p>
     <figure style="width: 70%; height: auto;">
-        <img src="/static/images/test_track.jpg" alt="Test Track Top View" style="width: 100%; height: auto;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/test_track.jpg" alt="Test Track Top View" style="width: 100%; height: auto;">
         <figcaption>Figure 2-1. Top view of the test track in our lab. </figcaption>
-        <img src="/static/images/test_track_annotated.png" alt="Test Track Top View" style="width: 100%; height: auto; margin-top: 60px;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/test_track_annotated.png" alt="Test Track Top View" style="width: 100%; height: auto; margin-top: 60px;">
         <figcaption>Figure 2-2. Path followed by the robot. </figcaption>
     </figure>
 
@@ -105,7 +105,7 @@
     <h3>Reconstructed Trajectories</h3>
     <p>Reconstruction of the robot trajectory is shown below. Notably ORB-SLAM is able to output estimated trajectory simultaneously as the robot drives, but here for analysis purpose we record the entire location sequence and only draw the diagram after tests are over.</p>
     <figure style="width: 70%; height: auto;">
-        <img src="/static/images/success1-3.png" alt="Reconstructed Trajectory" style="width: 140%; height: auto; clip-path: inset(100px); margin: -100px -100px -100px -100px;">
+        <img src="/SoftwareDeveloperPortfolio/static/images/success1-3.png" alt="Reconstructed Trajectory" style="width: 140%; height: auto; clip-path: inset(100px); margin: -100px -100px -100px -100px;">
         <figcaption>Figure 3. Comparison between trajectories reconstructed from ORB-SLAM (red) and wheel encoder dead-reckoning (green) </figcaption>
     </figure>
     <p>Above reconstruction diagram shows similar level of quality for both trajectories. The ORB-SLAM trajectory displays an abrupt jump (straight line on top left) around the end of the track, showing the algorithm is able to recognize the initial location by feature matching. This enables it to correct the location drift caused by sensor errors and inaccuracies.</p>
@@ -115,8 +115,8 @@
     <p>SLAM algorithm relies on the camera, and while the robot is completing the track, we see that occasionally the algorithm fails due to motion blurs:</p>
     <figure style="width: 70%; height: auto;">
         <div style="display: flex; gap: 10px;">
-            <img src="/static/images/before_lose_track_during_rotation.png" alt="Before: Tracking Lost due to Motion Blur" style="width: 60%; height: 60%;">
-            <img src="/static/images/after_lose_track_during_rotation.png" alt="After: Tracking Lost due to Motion Blur" style="width: 60%; height: 60%;">
+            <img src="/SoftwareDeveloperPortfolio/static/images/before_lose_track_during_rotation.png" alt="Before: Tracking Lost due to Motion Blur" style="width: 60%; height: 60%;">
+            <img src="/SoftwareDeveloperPortfolio/static/images/after_lose_track_during_rotation.png" alt="After: Tracking Lost due to Motion Blur" style="width: 60%; height: 60%;">
         </div>
         <figcaption>Figure 4. Robot camera experiencing rotational motion in a turn, causing the ORB-SLAM algorithm to temporarily fail due to untrackable features. </figcaption>
     </figure>
