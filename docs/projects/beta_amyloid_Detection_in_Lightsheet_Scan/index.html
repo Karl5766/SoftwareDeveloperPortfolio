@@ -78,7 +78,7 @@
     <h2>β-amyloid Detection in Lightsheet Scan</h2>
     <h3>Introduction</h3>
     <p>
-        As a data science student, I'm particularly interested in the applications of computer science and statistics skills in the field of science. In this project, I am responsible for software development as part of the research process, for understanding the requirements of the lab project and software annotation and implementation of training algorithm of a image segmentation model.
+        As a data science student, I'm particularly interested in the applications of computer science and statistics skills in the field of science. In this project, I am responsible for software development of a library package as part of the research process, solving the inadequate edge removal issue of the existing mouse brain preprocessing pipeline. This includes understanding the requirements of the lab project, software annotation of trainging images and training of a image segmentation machine learning model.
     </p>
     <p>
         Lightsheet microscopy is an imaging technique used in lab settings to illuminate samples and obtain high-resolution scanning.
@@ -95,7 +95,7 @@
     <h3>β-amyloid Detection</h3>
     <p>
         Old detection methods used hand-crafted algorithms, which struggled to differentiate true β-amyloid deposits from edges of mouse brains.
-        To improve this, I developed a distributed computing pipeline using Dask for scalable image processing, reducing analysis runtime for >100 GB datasets.
+        To improve this, I developed a distributed computing pipeline using Dask for scalable image processing, reducing analysis runtime by an order of magnitude for >100 GB datasets.
     </p>
     <figure style="width: 70%; height: auto;">
         <img src="/SoftwareDeveloperPortfolio/static/images/Robarts_size.png" alt="Data processing requirement diagram" style="width: 90%; height: auto;">
@@ -115,7 +115,9 @@
     </p>
     <h3>Library Packaging</h3>
     <p>
-        During the project, I encountered and resolved several bugs in open-source tools. The final software was packaged as the Python library
+        During the project, I encountered and resolved several bugs in open-source tools.
+        These bugs range from crash during annotation process leading to progress loss to double computation issue in ome zarr library that slows down the image preprocessing.
+        The final software was packaged as the Python library
         <a href="https://github.com/khanlab/cvpl_tools" target="_blank">cvpl_tools</a>,
         which provides training, prediction, and distributed post-processing APIs for lightsheet scans.
         Dependency management and PyPI publishing were handled with Poetry.
